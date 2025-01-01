@@ -100,7 +100,7 @@ public class WeatherScreen extends JPanel {
         // Define the start and end colors
         Color dayColor = new Color(122, 189, 255);
         Color nightColor = new Color(0, 40, 90);
-        Color dayWordColor = new Color(10, 10, 10);
+        Color dayWordColor = new Color(0, 0, 0);
         Color nightWordColor = new Color(210, 210, 210);
 
         // Create a timer to update the color
