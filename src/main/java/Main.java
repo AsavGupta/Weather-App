@@ -1,6 +1,4 @@
 import  javax.swing.*;
-import java.awt.*;
-import java.io.IOException;
 
 public class Main {
     public static int frameWidth = 400;
@@ -17,6 +15,5 @@ public class Main {
         frame.pack();
 
         frame.setVisible(true);
-
     }
 }
