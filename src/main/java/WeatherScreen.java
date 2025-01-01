@@ -222,10 +222,10 @@ public class WeatherScreen extends JPanel {
         if(Objects.equals(description, "Hail")){
             return imageResizer(System.getProperty("user.dir") + "\\Images\\Hail.png", imageSize, imageSize);
         }
-        if(Objects.equals(description, "Rainy") || Objects.equals(description, "Mist")){
+        if(Objects.equals(description, "Rainy") || Objects.equals(description, "Mist")|| Objects.equals(description, "Rain")){
             return imageResizer(System.getProperty("user.dir") + "\\Images\\Rainy.png", imageSize, imageSize);
         }
-        if(Objects.equals(description, "Snowy")){
+        if(Objects.equals(description, "Snow")){
             return imageResizer(System.getProperty("user.dir") + "\\Images\\Snowy.png", imageSize, imageSize);
         }
         if(Objects.equals(description, "Thunder")){
