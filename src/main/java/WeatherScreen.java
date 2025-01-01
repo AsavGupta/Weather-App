@@ -18,7 +18,7 @@ import java.util.TimerTask;
 public class WeatherScreen extends JPanel {
     private static JTextField locationField;
     private static Font concertOne;
-    private static ArrayList<JLabel> labelArrayList = new ArrayList<>();
+    private static final ArrayList<JLabel> labelArrayList = new ArrayList<>();
     private static LocalTime now;
     private static Color wordColor;
     WeatherScreen(){
@@ -32,7 +32,6 @@ public class WeatherScreen extends JPanel {
         } catch (Exception e){
             e.printStackTrace();
         }
-        this.setBackground(new Color(78, 180, 210));
         setLayout(new FlowLayout(FlowLayout.CENTER));
         setPreferredSize(new Dimension(Main.frameWidth,Main.frameHeight));
 
