@@ -40,7 +40,7 @@ public class WeatherScreen extends JPanel {
         locationField.setText("Enter City Name");
         locationField.setFont(concertOne);
 
-        JPanel weatherDisplayPanel = new JPanel();
+        Panel weatherDisplayPanel = new Panel();
         weatherDisplayPanel.setLayout(new FlowLayout(FlowLayout.CENTER, (int) (Main.frameWidth/1.5), Main.frameHeight/25));
         weatherDisplayPanel.setPreferredSize(new Dimension((int) (Main.frameWidth/1.2), (int) (Main.frameHeight/1.2)));
 
