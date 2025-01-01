@@ -16,9 +16,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class WeatherScreen extends JPanel {
-    private static Panel weatherDisplayPanel;
     private static JTextField locationField;
-    private static JButton fetchButton;
     private static Font concertOne;
     private static ArrayList<JLabel> labelArrayList = new ArrayList<>();
     private static LocalTime now;
@@ -42,7 +40,7 @@ public class WeatherScreen extends JPanel {
         locationField.setText("Enter City Name");
         locationField.setFont(concertOne);
 
-        weatherDisplayPanel = new Panel();
+        JPanel weatherDisplayPanel = new JPanel();
         weatherDisplayPanel.setLayout(new FlowLayout(FlowLayout.CENTER, (int) (Main.frameWidth/1.5), Main.frameHeight/25));
         weatherDisplayPanel.setPreferredSize(new Dimension((int) (Main.frameWidth/1.2), (int) (Main.frameHeight/1.2)));
 
@@ -70,7 +68,7 @@ public class WeatherScreen extends JPanel {
         labelArrayList.add(temperatureFeelsLikeLabel);
         weatherDisplayPanel.add(temperatureFeelsLikeLabel);
 
-        fetchButton = new JButton();
+        JButton fetchButton = new JButton();
         fetchButton.setIcon(imageResizer(System.getProperty("user.dir") + "\\Images\\Search.png", 20,20));
         fetchButton.addActionListener(e -> {
             String city = locationField.getText();
@@ -81,7 +79,7 @@ public class WeatherScreen extends JPanel {
                 }
             }
             String[] weatherInfo = fetchWeatherData(city);
-            if(weatherInfo[0] != "Error") {
+            if(!Objects.equals(weatherInfo[0], "Error")) {
                 locationLabel.setText(locationField.getText());
                 imageLabel.setIcon(weatherDescription(weatherInfo[0]));
                 currentTemperatureLabel.setText(weatherInfo[1]+"°");
@@ -172,15 +170,14 @@ public class WeatherScreen extends JPanel {
         try {
             String apiKey = "7ea609038dc1b8bbe6e9b12d6ddc1467";
             URL url = new URL("https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + apiKey);
-            System.out.println(url);
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             connection.setRequestMethod("GET");
 
             BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-            String response = "";
+            StringBuilder response = new StringBuilder();
             String line;
             while ((line = reader.readLine()) != null){
-                response += line;
+                response.append(line);
             }
             reader.close();
 
@@ -200,7 +197,9 @@ public class WeatherScreen extends JPanel {
                 minTemperatureFahrenheit = (double) Math.round((minTemperatureKelvin - 273.15) * ((double) 9 / 5) + 32);
                 maxTemperatureFahrenheit = (double) Math.round((maxTemperatureKelvin - 273.15) * ((double) 9 / 5) + 32);
                 feelsLikeTemperature = (double) Math.round((feelsLikeTemperature - 273.15) * ((double) 9 / 5) + 32);
-            } catch (Exception e){}
+            } catch (Exception e){
+                e.printStackTrace();
+            }
             //Weather Description
             JSONArray weatherArray = (JSONArray) jsonObject.get("weather");
             JSONObject weather = (JSONObject) weatherArray.get(0);
