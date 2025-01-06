@@ -8,7 +8,7 @@ public class Main {
         JFrame frame = new JFrame("Gupta Weather");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(frameWidth,frameHeight);
-        frame.setIconImage(WeatherScreen.imageResizer(System.getProperty("user.dir") + "\\Images\\Hail.png", 24,24).getImage());
+        frame.setIconImage(WeatherScreen.imageResizer(System.getProperty("user.dir") + "\\Images\\Rainy.png", 24,24).getImage());
         frame.setLocationRelativeTo(null);
         WeatherScreen weatherScreen = new WeatherScreen();
         frame.add(weatherScreen);

@@ -48,7 +48,6 @@ public class WeatherScreen extends JPanel {
 
         JLabel locationLabel = new JLabel("");
         labelArrayList.add(locationLabel);
-        locationLabel.setFont(concertOneLarge);
         weatherDisplayPanel.add(locationLabel);
 
         JLabel imageLabel = new JLabel();
@@ -57,7 +56,6 @@ public class WeatherScreen extends JPanel {
 
         JLabel currentTemperatureLabel = new JLabel("");
         labelArrayList.add(currentTemperatureLabel);
-        currentTemperatureLabel.setFont(concertOneLarge);
         weatherDisplayPanel.add(currentTemperatureLabel);
 
         JLabel descriptionLabel = new JLabel("");
@@ -146,9 +144,6 @@ public class WeatherScreen extends JPanel {
                         }
                         else{
                             label.setFont(concertOneDefault);
-                        }
-                        if(label.equals(imageLabel)) {
-                            label.setBackground(new Color(currentBgColor.getRed(), currentBgColor.getGreen(), currentBgColor.getBlue() - 10));
                         }
                         label.setForeground(wordColor);
                     }
