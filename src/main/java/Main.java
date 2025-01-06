@@ -2,7 +2,7 @@ import  javax.swing.*;
 
 public class Main {
     public static int frameWidth = 400;
-    public static int frameHeight = 500;
+    public static int frameHeight = 600;
     public static void main(String[] args){
 
         JFrame frame = new JFrame("Gupta Weather");

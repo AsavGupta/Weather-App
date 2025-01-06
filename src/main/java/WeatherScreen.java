@@ -17,7 +17,8 @@ import java.util.TimerTask;
 
 public class WeatherScreen extends JPanel {
     private static JTextField locationField;
-    private static Font concertOne;
+    private static Font concertOneDefault;
+    private static Font concertOneLarge;
     private static final ArrayList<JLabel> labelArrayList = new ArrayList<>();
     private static LocalTime now;
     private static Color wordColor;
@@ -25,10 +26,12 @@ public class WeatherScreen extends JPanel {
         try {
             UIManager.setLookAndFeel(new FlatLightOwlIJTheme());
 
-            concertOne = Font.createFont(Font.TRUETYPE_FONT, new File(System.getProperty("user.dir") + "\\Concert_One\\ConcertOne-Regular.ttf")).deriveFont(24f);
+            concertOneDefault = Font.createFont(Font.TRUETYPE_FONT, new File(System.getProperty("user.dir") + "\\Concert_One\\ConcertOne-Regular.ttf")).deriveFont(24f);
+            concertOneLarge = Font.createFont(Font.TRUETYPE_FONT, new File(System.getProperty("user.dir") + "\\Concert_One\\ConcertOne-Regular.ttf")).deriveFont(48f);
             GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
-            ge.registerFont(concertOne); // Register the font
-            this.setFont(concertOne);
+            ge.registerFont(concertOneDefault); // Register the font
+            ge.registerFont(concertOneLarge); // Register the font
+            this.setFont(concertOneDefault);
         } catch (Exception e){
             e.printStackTrace();
         }
@@ -37,14 +40,15 @@ public class WeatherScreen extends JPanel {
 
         locationField = new JTextField(15);
         locationField.setText("Enter City Name");
-        locationField.setFont(concertOne);
+        locationField.setFont(concertOneDefault);
 
         Panel weatherDisplayPanel = new Panel();
-        weatherDisplayPanel.setLayout(new FlowLayout(FlowLayout.CENTER, (int) (Main.frameWidth/1.5), Main.frameHeight/25));
+        weatherDisplayPanel.setLayout(new FlowLayout(FlowLayout.CENTER, (int) (Main.frameWidth/1.5), Main.frameHeight/30));
         weatherDisplayPanel.setPreferredSize(new Dimension((int) (Main.frameWidth/1.2), (int) (Main.frameHeight/1.2)));
 
         JLabel locationLabel = new JLabel("");
         labelArrayList.add(locationLabel);
+        locationLabel.setFont(concertOneLarge);
         weatherDisplayPanel.add(locationLabel);
 
         JLabel imageLabel = new JLabel();
@@ -53,6 +57,7 @@ public class WeatherScreen extends JPanel {
 
         JLabel currentTemperatureLabel = new JLabel("");
         labelArrayList.add(currentTemperatureLabel);
+        currentTemperatureLabel.setFont(concertOneLarge);
         weatherDisplayPanel.add(currentTemperatureLabel);
 
         JLabel descriptionLabel = new JLabel("");
@@ -98,7 +103,7 @@ public class WeatherScreen extends JPanel {
         Color dayColor = new Color(122, 189, 255);
         Color nightColor = new Color(0, 40, 90);
         Color dayWordColor = new Color(0, 0, 0);
-        Color nightWordColor = new Color(210, 210, 210);
+        Color nightWordColor = new Color(135, 135, 135);
 
         // Create a timer to update the color
         Timer timer = new Timer();
@@ -136,7 +141,15 @@ public class WeatherScreen extends JPanel {
                     // Set the panel's background color
                     setBackground(currentBgColor);
                     for (JLabel label: labelArrayList) {
-                        label.setFont(concertOne);
+                        if(label.equals(currentTemperatureLabel) || label.equals(locationLabel)) {
+                            label.setFont(concertOneLarge);
+                        }
+                        else{
+                            label.setFont(concertOneDefault);
+                        }
+                        if(label.equals(imageLabel)) {
+                            label.setBackground(new Color(currentBgColor.getRed(), currentBgColor.getGreen(), currentBgColor.getBlue() - 10));
+                        }
                         label.setForeground(wordColor);
                     }
                 });
@@ -212,7 +225,7 @@ public class WeatherScreen extends JPanel {
     }
 
     private ImageIcon weatherDescription(String description){
-        final int imageSize = 110;
+        final int imageSize = 150;
         if(Objects.equals(description, "Clear") || Objects.equals(description, "Sunny")){
             return imageResizer(System.getProperty("user.dir") + "\\Images\\Clear.png", imageSize, imageSize);
         }
