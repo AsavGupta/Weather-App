@@ -201,8 +201,8 @@ public class WeatherScreen extends JPanel {
                 double minTemperatureKelvin = (double)mainObj.get("temp_min");
                 double maxTemperatureKelvin = (double)mainObj.get("temp_max");
                 feelsLikeTemperature = (double)mainObj.get("feels_like");
-                minTemperatureFahrenheit = (double) Math.round((minTemperatureKelvin - 273.15) * ((double) 9 / 5) + 32);
-                maxTemperatureFahrenheit = (double) Math.round((maxTemperatureKelvin - 273.15) * ((double) 9 / 5) + 32);
+                minTemperatureFahrenheit = Math.round((minTemperatureKelvin - 273.15) * ((double) 9 / 5) + 32);
+                maxTemperatureFahrenheit = Math.round((maxTemperatureKelvin - 273.15) * ((double) 9 / 5) + 32);
                 feelsLikeTemperature = (double) Math.round((feelsLikeTemperature - 273.15) * ((double) 9 / 5) + 32);
             } catch (Exception e){
                 e.printStackTrace();

@@ -3,9 +3,9 @@
     <output-path>$PROJECT_DIR$/out/artifacts/WeatherApp_jar</output-path>
     <root id="archive" name="WeatherApp.jar">
       <element id="module-output" name="WeatherApp" />
+      <element id="extracted-dir" path="$USER_HOME$/Downloads/json-simple-1.1.1.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$USER_HOME$/Downloads/flatlaf-intellij-themes-3.5.1.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$USER_HOME$/Downloads/flatlaf-3.5.1.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$USER_HOME$/Downloads/json-simple-1.1.1.jar" path-in-jar="/" />
     </root>
   </artifact>
 </component>
